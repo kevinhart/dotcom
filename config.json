@@ -1,0 +1,32 @@
+{
+  "Title": "smcldotcom",
+  "Subtitle": "A poor man's khar.com",
+  "GroupsPerRow": 3,
+  "Groups": [
+    {
+      "Name": "Tech",
+      "Links": [
+        { "Name": "Google", "Link": "https://www.google.com" },
+        { "Name": "Arstechnica", "Link": "https://arstechnica.com" }
+      ]
+    },
+    {
+      "Name": "Sports",
+      "Links": [
+        { "Name": "ESPN", "Link": "https://espn.go.com" }
+      ]
+    },
+    {
+      "Name": "News",
+      "Links": [
+        { "Name": "New York Times", "Link": "https://nytimes.com" }
+      ]
+    },
+    {
+      "Name": "Social",
+      "Links": [
+        { "Name": "Twitter", "Link": "https://www.twitter.com" }
+      ]
+    }
+  ]
+}
