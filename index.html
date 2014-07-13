@@ -14,32 +14,46 @@
   </head>
   <body ng-app="dotcom">
 
-    <div class="container-fluid" ng-controller="DotcomCtrl">
-      <header class="home-header">
-        <div class="row">
-          <h1 class="col-md-8">{{pageTitle}} <small>{{pageSubtitle}}</small></h1>
-          <div class="col-md-4">
-            <h2 class="home-date">{{currentDate}}</h2>
+      <div ng-controller="DotcomCtrl">
+
+        <header class="home-header navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <span class="navbar-brand h1">{{pageTitle}} <small>{{pageSubtitle}}</small></span>
+            </div>
+
+            <div class="collapse navbar-collapse">
+              <form class="navbar-form navbar-right home-search" role="search" action="{{searchInfo.Url}}">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="{{searchInfo.InputName}}" placeholder="{{searchInfo.Name}}">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+            </div>
+
+          </div>
+        </header>
+
+        <div class="container-fluid">
+          <h3 class="home-date">{{currentDate}}</h3>
+
+          <div class="row" ng-repeat="row in linkRows">
+
+              <div class="col-md-3" ng-repeat="box in row">
+                <div class="link-box">
+                  <h2>{{box.Name}}</h2>
+                  <ul>
+                    <li ng-repeat="l in box.Links">
+                      <a href="{{l.Link}}">{{l.Name}}</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
           </div>
         </div>
-      </header>
-
-      <div class="row" ng-repeat="row in linkRows">
-
-          <div class="col-md-3" ng-repeat="box in row">
-            <div class="link-box">
-              <h2>{{box.Name}}</h2>
-              <ul>
-                <li ng-repeat="l in box.Links">
-                  <a href="{{l.Link}}">{{l.Name}}</a>
-                </li>
-              </ul>
-            </div>
-          </div>
 
       </div>
-
-    </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
     <script src="/scripts/dotcom.js"></script>

@@ -4,6 +4,15 @@
 
   var app = angular.module("dotcom", []);
 
+  app.config(["$sceDelegateProvider", function($sceDelegateProvider) {
+     $sceDelegateProvider.resourceUrlWhitelist([
+    // Allow same origin resource loads.
+    'self',
+    // Allow loading from outer templates domain.
+    'https://www.google.com/search**'
+    ]);
+  }]);
+
   app.factory("pageConfig", ["$http", function($http) {
     return {
       get: function (callback) {
@@ -30,6 +39,7 @@
     $scope.currentDate = "";
     $scope.linkBoxes = [];
     $scope.linkRows = [];
+    $scope.searchInfo = {};
     $scope.rowSize = 0;
     $scope.numRows = 0;
 
@@ -41,6 +51,7 @@
     $scope.refreshDotcom = function () {
       $scope.refreshHeader();
       $scope.refreshLinks();
+      $scope.refreshSearchInfo();
     };
 
     $scope.refreshHeader = function () {
@@ -74,6 +85,12 @@
 
       $scope.numRows = Math.ceil($scope.linkBoxes.length/$scope.rowSize);
       $scope.linkRows = $scope.createLinkRows();
+    };
+
+    $scope.refreshSearchInfo = function () {
+      if(isPresent($scope.pageConfig.Search)) {
+        $scope.searchInfo = $scope.pageConfig.Search;
+      }
     };
 
     $scope.createLinkRows = function () {

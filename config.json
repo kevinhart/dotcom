@@ -1,6 +1,11 @@
 {
   "Title": "smcldotcom",
   "Subtitle": "A poor man's khar.com",
+  "Search": {
+    "Name": "Google",
+    "Url": "https://www.google.com/search",
+    "InputName": "q"
+  },
   "GroupsPerRow": 3,
   "Groups": [
     {

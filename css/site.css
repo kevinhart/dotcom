@@ -4,18 +4,28 @@ html {
 
 body {
     /*background-color: #F5F3EA;*/
-    font-family: 'Open Sans';
+    font-family: 'Open Sans', sans-serif;
     font-weight: normal;
     font-size: 1.0rem;
 }
 
-h1 {
+h1,
+.h1 {
     font-size: 3.42857rem;
     letter-spacing: -2px;
     font-weight: 300;
 }
 
-h2, h3, h4, h5, h6 {
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
     font-weight: 300;
 }
 
@@ -24,7 +34,9 @@ a:visited {
 }
 
 .home-header {
-    border-width: 0 0 3px 0;
+    margin-bottom: 10px;
+
+    border-width: 10px 0 0px 0;
     border-style: solid;
     -moz-border-image: linear-gradient(to right, rgba(66,138,202,1) 0%, rgba(92,184,92,1) 33%, rgba(240,173,78,1) 66%, rgba(217,83,79,1) 100%) 100% 1;
     -o-border-image: linear-gradient(to right, rgba(66,138,202,1) 0%, rgba(92,184,92,1) 33%, rgba(240,173,78,1) 66%, rgba(217,83,79,1) 100%) 100% 1;
@@ -32,12 +44,20 @@ a:visited {
     border-image: linear-gradient(to right, rgba(66,138,202,1) 0%, rgba(92,184,92,1) 33%, rgba(240,173,78,1) 66%, rgba(217,83,79,1) 100%) 100% 1;
 }
 
+.navbar-brand {
+  margin-top: 5px;
+}
+
+.home-search {
+  padding-top: 10px;
+}
+
 .home-header a {
     color: inherit;
 }
 
-.home-header div {
-  margin-top: 20px;
+.home-date {
+  margin-top: 0;
 }
 
 .link-box h2 {
