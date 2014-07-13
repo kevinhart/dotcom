@@ -11,26 +11,32 @@
     {
       "Name": "Tech",
       "Links": [
-        { "Name": "Google", "Link": "https://www.google.com" },
-        { "Name": "Arstechnica", "Link": "https://arstechnica.com" }
+        { "Name": "Arstechnica", "Link": "https://arstechnica.com" },
+        { "Name": "The Verge", "Link": "https://www.theverge.com"},
+        { "Name": "YouTube", "Link": "https://youtube.com"}
       ]
     },
     {
       "Name": "Sports",
       "Links": [
-        { "Name": "ESPN", "Link": "https://espn.go.com" }
+        { "Name": "ESPN", "Link": "https://espn.go.com" },
+        { "Name": "SB Nation", "Link": "https://sbnation.com"},
+        { "Name": "Sports Illustrated", "Link": "https://si.com"},
+        { "Name": "Yahoo! Sports", "Link": "https://yahoo.com/sports"}
       ]
     },
     {
       "Name": "News",
       "Links": [
-        { "Name": "New York Times", "Link": "https://nytimes.com" }
+        { "Name": "New York Times", "Link": "https://nytimes.com" },
+        { "Name": "CNN", "Link": "https://www.cnn.com"}
       ]
     },
     {
       "Name": "Social",
       "Links": [
-        { "Name": "Twitter", "Link": "https://www.twitter.com" }
+        { "Name": "Twitter", "Link": "https://www.twitter.com" },
+        { "Name": "Instagram", "Link": "https://instagram.com"}
       ]
     }
   ]
