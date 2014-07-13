@@ -5,6 +5,7 @@
   var app = angular.module("dotcom", []);
 
   app.config(["$sceDelegateProvider", function($sceDelegateProvider) {
+    //TODO: Figure out how this should work. Angular will block URLs that arn't whitelisted.
      $sceDelegateProvider.resourceUrlWhitelist([
     // Allow same origin resource loads.
     'self',
@@ -40,6 +41,7 @@
     $scope.linkBoxes = [];
     $scope.linkRows = [];
     $scope.searchInfo = {};
+    $scope.searchInfo.Url = "#";
     $scope.rowSize = 0;
     $scope.numRows = 0;
 
