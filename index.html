@@ -20,15 +20,16 @@
         <header class="home-header navbar navbar-default">
           <div class="container-fluid">
             <div class="navbar-header">
-              <span class="navbar-brand h1">{{pageTitle}} <small>{{pageSubtitle}}</small></span>
+              <span class="navbar-brand h1">{{pageTitle}}</span>
             </div>
 
             <div class="collapse navbar-collapse">
+              <span class="h1 navbar-brand navbar-left"><small>{{pageSubtitle}}</small></span>
               <form class="navbar-form navbar-right home-search" role="search" action="{{searchInfo.Url}}">
                 <div class="form-group">
-                  <input type="text" class="form-control" name="{{searchInfo.InputName}}" placeholder="{{searchInfo.Name}}">
+                  <input type="text" class="form-control" name="{{searchInfo.InputName}}" placeholder="{{searchInfo.Name}}" ng-focus="isActive = true" ng-blur="isActive = false">
                 </div>
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn" ng-class="isActive ? 'btn-primary' : 'btn-default'">Submit</button>
               </form>
             </div>
 
@@ -36,13 +37,15 @@
         </header>
 
         <div class="container-fluid">
-          <h3 class="home-date">{{currentDate}}</h3>
+          <div class="row">
+            <h3 class="home-date pull-right">{{currentDate}}</h3>
+          </div>
 
           <div class="row" ng-repeat="row in linkRows">
 
               <div class="col-md-3" ng-repeat="box in row">
                 <div class="link-box">
-                  <h2>{{box.Name}}</h2>
+                  <span class="link-box-title">{{box.Name}}</span>
                   <ul>
                     <li ng-repeat="l in box.Links">
                       <a href="{{l.Link}}">{{l.Name}}</a>
