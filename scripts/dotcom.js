@@ -2,17 +2,7 @@
 (function () {
   "use strict";
 
-  var app = angular.module("dotcom", []);
-
-  app.config(["$sceDelegateProvider", function($sceDelegateProvider) {
-    //TODO: Figure out how this should work. Angular will block URLs that arn't whitelisted.
-     $sceDelegateProvider.resourceUrlWhitelist([
-    // Allow same origin resource loads.
-    'self',
-    // Allow loading from outer templates domain.
-    'https://www.google.com/search**'
-    ]);
-  }]);
+  var app = angular.module("dotcom", ["ngSanitize"]);
 
   app.factory("pageConfig", ["$http", function($http) {
     return {
@@ -32,7 +22,7 @@
     return days[curDate.getDay()] + ", " + months[curDate.getMonth()] + " " + curDate.getDate() + " " + curDate.getFullYear();
   });
 
-  app.controller("DotcomCtrl", ["$scope", "pageConfig", "currentDateString", function($scope, pageLinkSvc, dateFactory) {
+  app.controller("DotcomCtrl", ["$scope", "$sce", "pageConfig", "currentDateString", function($scope, $sce, pageLinkSvc, dateFactory) {
     $scope.pageConfig = {};
 
     $scope.pageTitle = "dotcom";
@@ -92,6 +82,9 @@
     $scope.refreshSearchInfo = function () {
       if(isPresent($scope.pageConfig.Search)) {
         $scope.searchInfo = $scope.pageConfig.Search;
+
+        //have to specifically trust this resource url, or angular won't let this value be interpolated.
+        $scope.searchInfo.Url = $sce.trustAsResourceUrl($scope.searchInfo.Url);
       }
     };
 
