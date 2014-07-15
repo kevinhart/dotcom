@@ -7,8 +7,17 @@
   app.factory("pageConfig", ["$http", function($http) {
     return {
       get: function (callback) {
-        $http.get("config.json").success(function (data) {
-          callback(data);
+        $http.get("custom.json").
+        success(function (data) {
+            callback(data);
+          }).
+        error(function(data, statuscode) {
+          if(statuscode == 404) {
+            $http.get("config.json")
+              .success(function(data) {
+                callback(data);
+              });
+          }
         });
       }
     };
