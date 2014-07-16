@@ -1,0 +1,77 @@
+{
+    "requireCurlyBraces": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "try",
+        "catch"
+    ],
+    "requireOperatorBeforeLineBreak": true,
+    "requireParenthesesAroundIIFE": true,
+    "requireMultipleVarDecl": "onevar",
+    "requireCommaBeforeLineBreak": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": true,
+    "requireDotNotation": true,
+    "maximumLineLength": {
+        "value": 120,
+        "tabSize": 4,
+        "allowUrlComments": true,
+        "allowRegex": true
+    },
+    "validateQuoteMarks": { "mark": "\"", "escape": true },
+
+    "disallowMixedSpacesAndTabs": "smart",
+    "disallowTrailingWhitespace": true,
+    "disallowMultipleLineStrings": true,
+    "disallowTrailingComma": true,
+
+
+    "requireSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpaceAfterKeywords": [
+        "if",
+        "else",
+        "for",
+        "while",
+        "do",
+        "switch",
+        "return",
+        "try",
+        "catch"
+    ],
+    "requireSpacesInsideObjectBrackets": "allButNested",
+    "requireSpacesInsideArrayBrackets": "allButNested",
+    "requireSpacesInConditionalExpression": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireLineFeedAtFileEnd": true,
+    "requireSpaceBeforeBinaryOperators": [
+        "=", "+=", "-=", "*=", "/=", "%=", "<<=", ">>=", ">>>=",
+        "&=", "|=", "^=", "+=",
+
+        "+", "-", "*", "/", "%", "<<", ">>", ">>>", "&",
+        "|", "^", "&&", "||", "===", "==", ">=",
+        "<=", "<", ">", "!=", "!=="
+    ],
+    "requireSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInNamedFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "validateLineBreaks": "LF",
+
+    "disallowKeywords": [ "with" ],
+    "disallowKeywordsOnNewLine": [ "else" ],
+
+    "disallowSpaceAfterObjectKeys": true,
+    "disallowSpaceAfterPrefixUnaryOperators": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "disallowSpaceBeforeBinaryOperators": [ ",", ":" ],
+    "disallowMultipleLineBreaks": true
+}
