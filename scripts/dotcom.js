@@ -2,36 +2,41 @@
 (function () {
   "use strict";
 
-  var app = angular.module("dotcom", ["ngSanitize"]);
+  var app = angular.module("dotcom", [ "ngSanitize" ]);
 
-  app.factory("pageConfig", ["$http", function($http) {
+  app.factory("pageConfig", [ "$http", function ($http) {
     return {
       get: function (callback) {
         $http.get("custom.json").
         success(function (data) {
             callback(data);
           }).
-        error(function(data, statuscode) {
-          if(statuscode == 404) {
+        error(function (data, statuscode) {
+          if (statuscode == 404) {
             $http.get("config.json")
-              .success(function(data) {
+              .success(function (data) {
                 callback(data);
               });
           }
         });
       }
     };
-  }]);
+  } ]);
 
   app.factory("currentDateString", function () {
-    var curDate = new Date();
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday","Saturday"];
-    var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    var curDate = new Date(),
+        days = [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ],
+        months = [ "January", "February", "March", "April", "May", "June", "July",
+                   "August", "September", "October", "November", "December" ];
 
-    return days[curDate.getDay()] + ", " + months[curDate.getMonth()] + " " + curDate.getDate() + " " + curDate.getFullYear();
+    return days[curDate.getDay()] + ", " +
+            months[curDate.getMonth()] + " " +
+            curDate.getDate() + " " +
+            curDate.getFullYear();
   });
 
-  app.controller("DotcomCtrl", ["$scope", "$sce", "pageConfig", "currentDateString", function($scope, $sce, pageLinkSvc, dateFactory) {
+  app.controller("DotcomCtrl", [ "$scope", "$sce", "pageConfig", "currentDateString",
+                                  function ($scope, $sce, pageLinkSvc, dateFactory) {
     $scope.pageConfig = {};
 
     $scope.pageTitle = "dotcom";
@@ -57,11 +62,11 @@
 
     $scope.refreshHeader = function () {
 
-      if(isPresent($scope.pageConfig.Title)) {
+      if (isPresent($scope.pageConfig.Title)) {
         $scope.pageTitle = $scope.pageConfig.Title;
       }
 
-      if(isPresent($scope.pageConfig.Subtitle)) {
+      if (isPresent($scope.pageConfig.Subtitle)) {
         $scope.pageSubtitle = $scope.pageConfig.Subtitle;
       }
 
@@ -72,24 +77,24 @@
       var i = 0,
           g;
 
-      if(!isArray($scope.pageConfig.Groups)) {
+      if (!isArray($scope.pageConfig.Groups)) {
         return;
       }
 
-      for( i = 0; i < $scope.pageConfig.Groups.length; i += 1) {
+      for (i = 0; i < $scope.pageConfig.Groups.length; i += 1) {
         $scope.linkBoxes.push($scope.pageConfig.Groups[i]);
       }
 
-      if(isPresent($scope.pageConfig.GroupsPerRow)) {
+      if (isPresent($scope.pageConfig.GroupsPerRow)) {
         $scope.rowSize = $scope.pageConfig.GroupsPerRow;
       }
 
-      $scope.numRows = Math.ceil($scope.linkBoxes.length/$scope.rowSize);
+      $scope.numRows = Math.ceil($scope.linkBoxes.length / $scope.rowSize);
       $scope.linkRows = $scope.createLinkRows();
     };
 
     $scope.refreshSearchInfo = function () {
-      if(isPresent($scope.pageConfig.Search)) {
+      if (isPresent($scope.pageConfig.Search)) {
         $scope.searchInfo = $scope.pageConfig.Search;
 
         //have to specifically trust this resource url, or angular won't let this value be interpolated.
@@ -100,13 +105,13 @@
     $scope.createLinkRows = function () {
       var r = [],
           i = 0,
-          j = 0;
+          j = 0,
+          entry = [];
 
-      for( i = 0; i < $scope.numRows; i += 1) {
-        var entry = [];
+      for (i = 0; i < $scope.numRows; i += 1) {
 
-        for( j = 0; j < $scope.rowSize && (i*$scope.rowSize)+j < $scope.linkBoxes.length; j += 1) {
-          entry.push($scope.linkBoxes[(i*$scope.rowSize)+j]);
+        for (j = 0; j < $scope.rowSize && (i * $scope.rowSize) + j < $scope.linkBoxes.length; j += 1) {
+          entry.push($scope.linkBoxes[(i * $scope.rowSize) + j]);
         }
 
         r.push(entry);
@@ -116,24 +121,24 @@
     };
 
     function isArray (val) {
-      if(val === undefined) {
+      if (val === undefined) {
         return false;
       }
 
-      if(Object.prototype.toString.call(val) == '[object Array]') {
+      if (Object.prototype.toString.call(val) == "[object Array]") {
         return true;
       }
 
       return false;
     }
 
-    function isPresent(val) {
-      if(val === undefined) {
+    function isPresent (val) {
+      if (val === undefined) {
         return false;
       }
 
       return true;
     }
 
-  }]);
+  } ]);
 }());
