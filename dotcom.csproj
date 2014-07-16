@@ -68,12 +68,9 @@
   <ItemGroup>
     <Content Include="config.json" />
     <Content Include="README.md" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="custom.json" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
