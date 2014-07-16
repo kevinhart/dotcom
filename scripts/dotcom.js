@@ -109,7 +109,7 @@
           entry = [];
 
       for (i = 0; i < $scope.numRows; i += 1) {
-
+        entry = [];
         for (j = 0; j < $scope.rowSize && (i * $scope.rowSize) + j < $scope.linkBoxes.length; j += 1) {
           entry.push($scope.linkBoxes[(i * $scope.rowSize) + j]);
         }
