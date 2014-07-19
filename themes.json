@@ -1,0 +1,4 @@
+[
+  { "Name": "Default", "src": "css/site.css" },
+  { "Name": "Dark", "src": "css/dark.css" }
+]
