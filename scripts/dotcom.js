@@ -2,7 +2,7 @@
 (function () {
   "use strict";
 
-  var app = angular.module("dotcom", [ "ngSanitize" ]);
+  var app = angular.module("dotcom", [ "ngSanitize", "themer" ]);
 
   app.factory("pageConfig", [ "$http", function ($http) {
     return {

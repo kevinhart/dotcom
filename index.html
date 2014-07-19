@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="dotcom">
+  <head ng-controller="themerCtrl">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,10 +9,10 @@
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" />
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/site.css" />
+    <link data-themer />
 
   </head>
-  <body ng-app="dotcom">
+  <body>
 
       <div ng-controller="DotcomCtrl">
 
@@ -60,6 +60,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-sanitize.js"></script>
+    <script src="scripts/themes.js"></script>
     <script src="scripts/dotcom.js"></script>
   </body>
 </html>

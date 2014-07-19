@@ -2,19 +2,6 @@
 (function () {
   "use strict";
 
-  // Need to rethink how this works. We need to expose a series of themes via a scope.
-  // And given the selected theme, update a link element on the <head> element.
-  //
-  // Create a .json file to store the themes
-  // {
-  //   "Dark": "dark.css",
-  //   "Light": "light.css"
-  // }
-  //
-  // Load this .json file and create a container for the list of styles
-  // then show this list of styles to the user, allowing them to change the style
-
-
   var module = angular.module("themer", []);
 
   module.config([ "$logProvider", function ($logProvider) {
@@ -29,7 +16,7 @@
     };
   } ]);
 
-  module.controller("themerCtrl", ["$scope", "themeConfigFactory", function($scope, themeConfigFactory) {
+  module.controller("themerCtrl", ["$scope", "themeConfigFactory", "$timeout", function($scope, themeConfigFactory, $timeout) {
     var ctrl = this;
 
     ctrl.themes = [];
@@ -54,30 +41,37 @@
     };
 
     ctrl.selectTheme = function (theme) {
-      ctrl.selectedTheme = theme;
+      $timeout(function () {
+          ctrl.selectedTheme = theme;
+      });
     };
 
     ctrl.selectThemeByIndex = function (idx) {
-      if (idx > 0 && idx < ctrl.themes.length) {
+      if (idx >= 0 && idx < ctrl.themes.length) {
         ctrl.selectTheme(ctrl.themes[idx]);
       }
     };
 
   } ]);
 
-  module.directive("themer", function($log, $compile) {
+  module.directive("themer", function ($log, $compile) {
     return {
       restrict: "A",
-      scope: true,
+      // scope: true,
+      replace: true,
       controller: "themerCtrl",
-      controllerAs: "$themer",
-      compile: function (telement, tattrs, transclude) {
+      controllerAs: "themer",
+      link: function (scope, element, attrs, themer) {
+        element.attr("ng-href", "{{themer.selectedTheme.src}}");
+        element.attr("rel", "stylesheet");
+        element.attr("type", "text/css");
 
-        tattrs.$set("src", "$themer.selectedTheme.src");
+        //infite loop happens if 'themer' is not removed from the element.
+        element.removeAttr("themer");
+        element.removeAttr("data-themer");
 
-        return function link (scope, element, attrs, $themer) {
-          $log.debug("linked themer");
-        };
+        $compile(element)(scope);
+        $log.debug("linked");
       }
     };
   });
