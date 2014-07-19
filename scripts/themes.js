@@ -8,7 +8,7 @@
     $logProvider.debugEnabled(true);
   } ]);
 
-  module.factory("themeConfigFactory", ["$http", function($http) {
+  module.factory("themeConfigFactory", [ "$http", function ($http) {
     return {
       get: function () {
         return $http.get("themes.json");
@@ -16,7 +16,8 @@
     };
   } ]);
 
-  module.controller("themerCtrl", ["$scope", "themeConfigFactory", "$timeout", function($scope, themeConfigFactory, $timeout) {
+  module.controller("themerCtrl", [ "$scope", "themeConfigFactory", "$timeout",
+                                    function ($scope, themeConfigFactory, $timeout) {
     var ctrl = this;
 
     ctrl.themes = [];
