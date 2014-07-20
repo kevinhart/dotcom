@@ -8,62 +8,60 @@
     $logProvider.debugEnabled(true);
   } ]);
 
-  module.factory("themeConfigFactory", [ "$http", function ($http) {
-    return {
-      get: function () {
-        return $http.get("themes.json");
-      }
-    };
+  module.factory("themeCfgFactory", [ "$http", function ($http) {
+    function getThemes () {
+      return $http.get("themes.json");
+    }
+
+    return getThemes;
   } ]);
 
-  module.controller("themerCtrl", [ "$scope", "themeConfigFactory", "$timeout",
-                                    function ($scope, themeConfigFactory, $timeout) {
-    var ctrl = this;
+  module.service("themerSvc", [ "$log", "$timeout", "themeCfgFactory",
+                                function ($log, $timeout, themeCfgFactory) {
+    var svc = this;
 
-    ctrl.themes = [];
-    ctrl.selectedTheme = {};
-    ctrl.selectedTheme.src = "";
+    svc.themes = [];
+    svc.selectedTheme = {
+      name: "",
+      href: ""
+    };
 
-    themeConfigFactory.get().
+    themeCfgFactory().
       success(function (themeList) {
         var i = 0;
-
         for (i = 0; i < themeList.length; i += 1) {
-          ctrl.addTheme(themeList[i]);
+          svc.addTheme(themeList[i]);
         }
       });
 
-    ctrl.addTheme = function (theme) {
-      ctrl.themes.push(theme);
-
-      if (ctrl.themes.length === 1) {
-        ctrl.selectTheme(theme);
+    svc.addTheme = function (theme) {
+      svc.themes.push(theme);
+      if (svc.themes.length === 1) {
+        svc.selectTheme(theme);
       }
     };
 
-    ctrl.selectTheme = function (theme) {
-      $timeout(function () {
-          ctrl.selectedTheme = theme;
+    svc.selectTheme = function (theme) {
+      $timeout( function () {
+        svc.selectedTheme = theme;
       });
     };
 
-    ctrl.selectThemeByIndex = function (idx) {
-      if (idx >= 0 && idx < ctrl.themes.length) {
-        ctrl.selectTheme(ctrl.themes[idx]);
+    svc.selectThemeByIndex = function (idx) {
+      if (idx >= 0 && idx < svc.themes.length) {
+        svc.selectTheme(svc.themes[idx]);
       }
     };
-
   } ]);
 
-  module.directive("themer", function ($log, $compile) {
+  module.directive("themer", function ($log, $compile, themerSvc) {
     return {
       restrict: "A",
-      // scope: true,
+      scope: true,
       replace: true,
-      controller: "themerCtrl",
-      controllerAs: "themer",
-      link: function (scope, element, attrs, themer) {
-        element.attr("ng-href", "{{themer.selectedTheme.src}}");
+      link: function (scope, element, attrs) {
+        scope.themerSvc = themerSvc;
+        element.attr("ng-href", "{{themerSvc.selectedTheme.href}}");
         element.attr("rel", "stylesheet");
         element.attr("type", "text/css");
 

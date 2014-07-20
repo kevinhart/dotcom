@@ -1,4 +1,4 @@
 [
-  { "Name": "Default", "src": "css/site.css" },
-  { "Name": "Dark", "src": "css/dark.css" }
+  { "Name": "Default", "href": "css/site.css" },
+  { "Name": "Dark", "href": "css/dark.css" }
 ]
