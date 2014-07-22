@@ -75,4 +75,23 @@
     };
   });
 
+  module.directive("themerChooser", function () {
+    return {
+      restrict: "E",
+      scope: true,
+      templateUrl: "../tpl/themes.html",
+      controller: "ThemerCtrl",
+      controllerAs: "themer"
+    };
+  });
+
+  module.controller("ThemerCtrl", [ "$scope", "themerSvc", function ($scope, themerSvc) {
+    this.themes = themerSvc.themes;
+    this.svc = themerSvc;
+
+    // this.switchTheme = function (idx) {
+    //   themerSvc.selectThemeByIndex(idx);
+    // };
+  } ]);
+
 }());

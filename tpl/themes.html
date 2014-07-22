@@ -1,0 +1,15 @@
+<div>
+  <div class="themer-change">
+    <a href="#" ng-click="themer.open = true">Change Theme</a>
+  </div>
+
+  <div class="themer-dialog" ng-show="themer.open">
+    <div class="themer-dialog-box clearfix">
+      <h3>Select a theme your site</h3>
+      <div class="form-group">
+        <select class="form-control input-sm" ng-model="themer.svc.selectedTheme" ng-options="theme.Name for theme in themer.themes"></select>
+      </div>
+      <button class="btn btn-default btn-sm pull-right" ng-click="themer.open = false">Done</button>
+    </div>
+  </div>
+</div>
