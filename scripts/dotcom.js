@@ -35,8 +35,8 @@
             curDate.getFullYear();
   });
 
-  app.controller("DotcomCtrl", [ "$scope", "$sce", "pageConfig", "currentDateString",
-                                  function ($scope, $sce, pageLinkSvc, dateFactory) {
+  app.controller("DotcomCtrl", [ "$scope", "$sce", "pageConfig", "currentDateString", "themerSvc",
+                                  function ($scope, $sce, pageLinkSvc, dateFactory, themerSvc) {
     $scope.pageConfig = {};
 
     $scope.pageTitle = "dotcom";
@@ -68,6 +68,10 @@
 
       if (isPresent($scope.pageConfig.Subtitle)) {
         $scope.pageSubtitle = $scope.pageConfig.Subtitle;
+      }
+
+      if (isPresent($scope.pageConfig.Theme)) {
+        themerSvc.selectThemeByName($scope.pageConfig.Theme);
       }
 
       $scope.currentDate = dateFactory;

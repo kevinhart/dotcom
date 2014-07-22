@@ -52,6 +52,17 @@
         svc.selectTheme(svc.themes[idx]);
       }
     };
+
+    svc.selectThemeByName = function (name) {
+      var i = 0;
+
+      for (i = 0; i < svc.themes.length; i += 1) {
+        if (svc.themes[i].Name == name) {
+          svc.selectTheme(svc.themes[i]);
+          return;
+        }
+      }
+    };
   } ]);
 
   module.directive("themer", function ($log, $compile, themerSvc) {
@@ -88,10 +99,6 @@
   module.controller("ThemerCtrl", [ "$scope", "themerSvc", function ($scope, themerSvc) {
     this.themes = themerSvc.themes;
     this.svc = themerSvc;
-
-    // this.switchTheme = function (idx) {
-    //   themerSvc.selectThemeByIndex(idx);
-    // };
   } ]);
 
 }());
