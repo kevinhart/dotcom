@@ -90,7 +90,7 @@
     return {
       restrict: "E",
       scope: true,
-      templateUrl: "../tpl/themes.html",
+      templateUrl: "tpl/themes.html",
       controller: "ThemerCtrl",
       controllerAs: "themer"
     };
