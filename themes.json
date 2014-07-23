@@ -1,4 +1,5 @@
 [
   { "Name": "Dark", "href": "css/dark.css" },
-  { "Name": "Default", "href": "css/site.css" }
+  { "Name": "Default", "href": "css/site.css" },
+  { "Name": "KHAR", "href": "css/khar.css" }
 ]

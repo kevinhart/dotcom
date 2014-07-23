@@ -1,0 +1,119 @@
+html, body {
+    font-family: 'Open Sans', 'Segoe UI', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.navbar {
+    margin-bottom: 0;
+    border-bottom: 1px solid #c0c0c0;
+    background-color: #dcdcdc;
+    border-radius: 0;    
+}
+
+.navbar-brand {
+    margin-top: 0;
+}
+
+.home-search {
+    padding-top: 5px;
+}
+
+.navbar-brand.navbar-left small {
+    color: #999 !important;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+.home-date {
+    margin-right: 20px;
+    padding-bottom: 10px;
+    color: #777;
+    font-size: 1.5em;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+h1, .h1 {
+    color: #555 !important;
+    font-size: 3.42857rem;
+    font-weight: 300;
+    text-shadow: 1px 1px 1px #fff;
+}
+
+h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-weight: 300;
+}
+
+a, a:link, a:visited {
+    color: #2667ba;
+    text-decoration: none;
+    transition: 0.5s all;
+}
+
+.link-box {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-top-width: 0;
+    background-color: #fff;
+    box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.1);
+}
+
+.link-box::before {
+    content: " ";
+    display: block;
+    height: 4px;    
+    margin: -14px -11px 10px;
+    background-color: #d8a;
+}
+
+.link-box-title {
+    margin-bottom: 10px;
+    color: #888;
+    font-size: 1.4em;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.link-box ul {
+    margin: 5px 0 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.link-box ul li a {
+    display: block;
+    padding: 7px 5px 7px 20px;
+    background-color: #fff;
+    transition: 0.5s all;
+    word-wrap: break-word;
+}
+
+.link-box ul li a:hover {
+    color: #fff;
+    background-color: #d8a;
+    transition: 0.5s all;    
+}
+
+.row > [class^='col-']:nth-child(4n+1) .link-box::before {
+    background-color: #76a7fa;
+}
+
+.row > [class^='col-']:nth-child(4n+1) .link-box ul li a:hover {
+    background-color: #76a7fa;
+}
+
+.row > [class^='col-']:nth-child(4n+2) .link-box::before {
+    background-color: #b19cd9;
+}
+
+.row > [class^='col-']:nth-child(4n+2) .link-box ul li a:hover {
+    background-color: #b19cd9;
+}
+
+.row > [class^='col-']:nth-child(4n+3) .link-box::before {
+    background-color: #7a0;
+}
+
+.row > [class^='col-']:nth-child(4n+3) .link-box ul li a:hover {
+    background-color: #7a0;
+}
