@@ -35,6 +35,40 @@
             curDate.getFullYear();
   });
 
+  app.directive("linkBox", [ function () {
+    return {
+      restrict: "A",
+      link: function (scope, element, attrs) {
+        var btstrapSize = "12",
+            gridClass = "";
+
+        switch (scope.rowSize) {
+          case 1:
+            btstrapSize = "12";
+            break;
+
+          case 2:
+            btstrapSize = "6";
+            break;
+
+          case 3:
+            btstrapSize = "4";
+            break;
+
+          case 4:
+            btstrapSize = "3";
+            break;
+
+          default:
+            btstrapSize = "3";
+        }
+
+        gridClass = "col-md-" + btstrapSize;
+        element.addClass(gridClass);
+      }
+    };
+  } ]);
+
   app.controller("DotcomCtrl", [ "$scope", "$sce", "pageConfig", "currentDateString", "themerSvc",
                                   function ($scope, $sce, pageLinkSvc, dateFactory, themerSvc) {
     $scope.pageConfig = {};

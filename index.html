@@ -43,7 +43,7 @@
 
         <div class="link-box-row row" ng-repeat="row in linkRows">
 
-            <div class="col-md-3" ng-repeat="box in row">
+            <div ng-repeat="box in row" link-box>
               <div class="link-box">
                 <span class="link-box-title">{{box.Name}}</span>
                 <ul>
