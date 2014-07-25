@@ -63,6 +63,16 @@
         }
       }
     };
+
+    svc.resetTheme = function () {
+      $timeout(function () {
+        svc.selectedTheme = {
+          name: "",
+          href: ""
+        };
+      });
+    };
+
   } ]);
 
   module.directive("themer", function ($log, $compile, themerSvc) {
