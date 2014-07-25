@@ -2,7 +2,18 @@
 (function () {
   "use strict";
 
-  var app = angular.module("dotcom", [ "ngSanitize", "themer" ]);
+  var app = angular.module("dotcom", [ "ngSanitize", "ngRoute", "themer" ]);
+
+  app.config(([ "$routeProvider", function($routeProvider) {
+    $routeProvider.
+    when("/edit", {
+      templateUrl: "tpl/edit.html",
+    }).
+    when("/", {
+      templateUrl: "tpl/home.html",
+      controller: "DotcomCtrl",
+    });
+  } ]));
 
   app.factory("pageConfig", [ "$http", function ($http) {
     return {

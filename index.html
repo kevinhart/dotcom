@@ -15,52 +15,10 @@
   </head>
   <body>
 
-    <div ng-controller="DotcomCtrl">
-
-      <header class="home-header navbar navbar-default">
-        <div class="container-fluid">
-          <div class="navbar-header">
-            <span class="navbar-brand h1">{{pageTitle}}</span>
-          </div>
-
-          <div class="collapse navbar-collapse">
-            <span class="h1 navbar-brand navbar-left"><small>{{pageSubtitle}}</small></span>
-            <form class="navbar-form navbar-right home-search" role="search" action="{{searchInfo.Url}}">
-              <div class="form-group">
-                <input type="text" class="form-control" name="{{searchInfo.InputName}}" placeholder="{{searchInfo.Name}}" ng-focus="isActive = true" ng-blur="isActive = false">
-              </div>
-              <button type="submit" class="btn" ng-class="isActive ? 'btn-primary' : 'btn-default'">Submit</button>
-            </form>
-          </div>
-
-        </div>
-      </header>
-
-      <div class="container-fluid">
-        <div class="home-date-wrapper row">
-          <h3 class="home-date pull-right">{{currentDate}}</h3>
-        </div>
-
-        <div class="link-box-row row" ng-repeat="row in linkRows">
-
-            <div ng-repeat="box in row" link-box>
-              <div class="link-box">
-                <span class="link-box-title">{{box.Name}}</span>
-                <ul>
-                  <li ng-repeat="l in box.Links">
-                    <a href="{{l.Link}}">{{l.Name}}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-        </div>
-      </div>
-
-      <themer-chooser></themer-chooser>
-    </div>
+    <div ng-view></div>
 
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-route.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-sanitize.js"></script>
     <script src="scripts/themes.js"></script>
     <script src="scripts/dotcom.js"></script>
