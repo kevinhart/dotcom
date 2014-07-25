@@ -8,6 +8,7 @@
     $routeProvider.
     when("/edit", {
       templateUrl: "tpl/edit.html",
+      controller: "EditCtrl",
     }).
     when("/", {
       templateUrl: "tpl/home.html",
@@ -189,5 +190,13 @@
       return true;
     }
 
+  } ]);
+
+  app.controller("EditCtrl", [ "$scope", "pageConfig", function($scope, pageConfigSvc) {
+    $scope.pageConfig = {};
+
+    pageConfigSvc.get(function (cfg) {
+      $scope.pageConfig = cfg;
+    });
   } ]);
 }());
