@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <form>
+    <form name="inputConfig" ng-submit="submit()">
 
       <div class="form-group">
         <label for="customSubtitle">Title</label>
@@ -32,5 +32,20 @@
         <input ng-model="pageConfig.GroupsPerRow" type="text" class="form-control" id="customGroupsPerRow" placeholder="Links per row" />
       </div>
 
+      <div class="form-group">
+        <h4>Link Boxes</h4>
+        <div class="form-group" ng-repeat="box in pageConfig.Groups">
+          <label>Box Name</label>
+          <input ng-model="box.Name" type="text" class="form-control" />
+          <div ng-repeat="link in box.Links">
+            <div class="form-group">
+              <label>Name</label>
+              <input ng-model="link.Name" type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-default" name="submit" type="submit">Submit</button>
     </form>
 </dv>

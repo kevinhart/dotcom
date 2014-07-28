@@ -198,5 +198,10 @@
     pageConfigSvc.get(function (cfg) {
       $scope.pageConfig = cfg;
     });
+
+    $scope.submit = function () {
+      
+    };
+
   } ]);
 }());
