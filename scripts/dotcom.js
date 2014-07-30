@@ -225,8 +225,8 @@
       pageConfigSvc.set($scope.pageConfig);
     };
 
-    $scope.addLink = function () {
-      console.log("HI");
+    $scope.addLink = function (bar, name, url) {
+      console.log(name + " " + url);
     };
 
   } ]);
