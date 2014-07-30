@@ -1,46 +1,80 @@
 <div class="container-fluid">
-    <form name="inputConfig" ng-submit="submit()">
+  <h1>Dotcom Editor</h1>
+    <form class="form-horizontal" name="inputConfig" ng-submit="submit()">
 
       <div class="form-group">
-        <label for="customSubtitle">Title</label>
-        <input ng-model="pageConfig.Title" type="text" class="form-control" id="customTitle" placeholder="Page Title"/>
+        <label class="col-sm-2 control-label" for="customSubtitle">Title</label>
+        <div class="col-sm-6">
+          <input ng-model="pageConfig.Title" type="text" class="form-control" id="customTitle" placeholder="Page Title"/>
+        </div>
       </div>
 
       <div class="form-group">
-        <label for="customSubtitle">Subtitle</label>
-        <input ng-model="pageConfig.Subtitle" type="text" class="form-control" id="customSubtitle" placeholder="Subtitle"/>
+        <label class="col-sm-2 control-label" for="customSubtitle">Subtitle</label>
+        <div class="col-sm-6">
+          <input ng-model="pageConfig.Subtitle" type="text" class="form-control" id="customSubtitle" placeholder="Subtitle"/>
+        </div>
       </div>
 
-      <div class="form-group">
+      <div>
         <h4>Search</h4>
         <div class="form-group">
-          <label for="customSearchName">Name</label>
-          <input ng-model="pageConfig.Search.Name" type="text" class="form-control" id="customSearchName" placeholder="Search Name" />
+          <label class="col-sm-2 control-label" for="customSearchName">Name</label>
+          <div class="col-sm-6">
+            <input ng-model="pageConfig.Search.Name" type="text" class="form-control" id="customSearchName" placeholder="Search Name" />
+          </div>
         </div>
         <div class="form-group">
-          <label for="customSearchUrl">Url</label>
-          <input ng-model="pageConfig.Search.Url" type="text" class="form-control" id="customSearchUrl" placeholder="Search Url" />
+          <label class="col-sm-2 control-label" for="customSearchUrl">Url</label>
+          <div class="col-sm-6">
+            <input ng-model="pageConfig.Search.Url" type="text" class="form-control" id="customSearchUrl" placeholder="Search Url" />
+          </div>
         </div>
         <div class="form-group">
-          <label for="customSearchQs">Query String</label>
-          <input ng-model="pageConfig.Search.InputName" type="text" class="form-control" id="customSearchQs" placeholder="Query String" />
+          <label class="col-sm-2 control-label" for="customSearchQs">Query String</label>
+          <div class="col-sm-2">
+            <input ng-model="pageConfig.Search.InputName" type="text" class="form-control" id="customSearchQs" placeholder="Query String" />
+          </div>
         </div>
       </div>
 
       <div class="form-group">
-        <label for="customLinksPerRow">Groups Per Row</label>
-        <input ng-model="pageConfig.GroupsPerRow" type="text" class="form-control" id="customGroupsPerRow" placeholder="Links per row" />
+        <label class="col-sm-2 control-label" for="customLinksPerRow">Groups Per Row</label>
+        <div class="col-sm-6">
+          <input ng-model="pageConfig.GroupsPerRow" type="text" class="form-control" id="customGroupsPerRow" placeholder="Links per row" />
+        </div>
       </div>
 
-      <div class="form-group">
+      <div>
         <h4>Link Boxes</h4>
-        <div class="form-group" ng-repeat="box in pageConfig.Groups">
-          <label>Box Name</label>
-          <input ng-model="box.Name" type="text" class="form-control" />
+        <div ng-repeat="box in pageConfig.Groups">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Box Name</label>
+            <div class="col-sm-6">
+              <input ng-model="box.Name" type="text" class="form-control" />
+            </div>
+          </div>
+
+          <div ng-form ng-submit="addLink()">
+            <div class="form-group">
+              <div class="col-sm-2 col-sm-offset-2">
+                <input ng-model="name" type="text" class="form-control" />
+              </div>
+              <div class="col-sm-6">
+                <input ng-model="url" type="text" class="form-control" />
+              </div>
+            </div>
+          </div>
+
           <div ng-repeat="link in box.Links">
             <div class="form-group">
-              <label>Name</label>
-              <input ng-model="link.Name" type="text" class="form-control" />
+              <div class="col-sm-2 col-sm-offset-2">
+                <input ng-model="link.Name" type="text" class="form-control" />
+              </div>
+              <div class="col-sm-6">
+                <input ng-model="link.Link" type="text" class="form-control" />
+              </div>
             </div>
           </div>
         </div>
@@ -48,4 +82,4 @@
 
       <button class="btn btn-default" name="submit" type="submit">Submit</button>
     </form>
-</dv>
+</div>

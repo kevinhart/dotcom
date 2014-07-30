@@ -4,33 +4,40 @@
 
   var app = angular.module("dotcom", [ "ngSanitize", "ngRoute", "themer" ]);
 
-  app.config(([ "$routeProvider", function($routeProvider) {
+  app.config(([ "$routeProvider", function ($routeProvider) {
     $routeProvider.
     when("/edit", {
       templateUrl: "tpl/edit.html",
-      controller: "EditCtrl",
+      controller: "EditCtrl"
     }).
     when("/", {
       templateUrl: "tpl/home.html",
-      controller: "DotcomCtrl",
+      controller: "DotcomCtrl"
     });
   } ]));
 
-  app.factory("pageConfig", [ "$http", function ($http) {
+  app.factory("pageConfig", [ "$q", "$http", function ($q, $http) {
     return {
-      get: function (callback) {
-        $http.get("custom.json").
-        success(function (data) {
-            callback(data);
-          }).
-        error(function (data, statuscode) {
-          if (statuscode == 404) {
-            $http.get("config.json")
-              .success(function (data) {
-                callback(data);
-              });
-          }
-        });
+      get: function () {
+        var deferred = $q.defer(),
+            result;
+
+        result = localStorage.getItem("dotcomConfig");
+        if (result) {
+          result = angular.fromJson(result);
+          deferred.resolve(result);
+        } else {
+          $http.get("config.json").then(function (response) {
+            deferred.resolve(response.data);
+          });
+        }
+
+        return deferred.promise;
+      },
+
+      set: function (pageConfig) {
+        var val = angular.toJson(pageConfig);
+        localStorage.setItem("dotcomConfig", val);
       }
     };
   } ]);
@@ -81,6 +88,20 @@
     };
   } ]);
 
+  app.directive("ngEnter", function () {
+    return function (scope, element, attrs) {
+      element.bind("keydown keypress", function (event) {
+        if (event.which === 13) {
+          scope.$apply(function () {
+            scope.$eval(attrs.ngEnter);
+          });
+
+          event.preventDefault();
+        }
+      });
+    };
+  });
+
   app.controller("DotcomCtrl", [ "$scope", "$sce", "pageConfig", "currentDateString", "themerSvc",
                                   function ($scope, $sce, pageLinkSvc, dateFactory, themerSvc) {
     $scope.pageConfig = {};
@@ -95,7 +116,7 @@
     $scope.rowSize = 0;
     $scope.numRows = 0;
 
-    pageLinkSvc.get(function (cfg) {
+    pageLinkSvc.get().then(function (cfg) {
       $scope.pageConfig = cfg;
       $scope.refreshDotcom();
     });
@@ -192,15 +213,20 @@
 
   } ]);
 
-  app.controller("EditCtrl", [ "$scope", "pageConfig", function($scope, pageConfigSvc) {
+  app.controller("EditCtrl", [ "$scope", "pageConfig", function ($scope, pageConfigSvc) {
     $scope.pageConfig = {};
 
-    pageConfigSvc.get(function (cfg) {
-      $scope.pageConfig = cfg;
+    pageConfigSvc.get().then(function (data) {
+      $scope.pageConfig = data;
     });
 
     $scope.submit = function () {
-      
+      console.log("saving");
+      pageConfigSvc.set($scope.pageConfig);
+    };
+
+    $scope.addLink = function () {
+      console.log("HI");
     };
 
   } ]);
