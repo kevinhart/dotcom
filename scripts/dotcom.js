@@ -213,20 +213,41 @@
 
   } ]);
 
-  app.controller("EditCtrl", [ "$scope", "pageConfig", function ($scope, pageConfigSvc) {
+  app.controller("EditCtrl", [ "$scope", "pageConfig", "themerSvc", "$location", function ($scope, pageConfigSvc, themerSvc, $location) {
     $scope.pageConfig = {};
 
     pageConfigSvc.get().then(function (data) {
       $scope.pageConfig = data;
     });
 
+    $scope.themerSvc = themerSvc;
+
     $scope.submit = function () {
-      console.log("saving");
+      $scope.pageConfig.Theme = $scope.themerSvc.selectedTheme.Name;
       pageConfigSvc.set($scope.pageConfig);
+      $location.path("/");
     };
 
-    $scope.addLink = function (bar, name, url) {
-      console.log(name + " " + url);
+    $scope.addLink = function (box) {
+      if(box === undefined || box.newName === undefined || box.newUrl === undefined) {
+        return;
+      }
+
+      box.Links.push({Name: box.newName, Link: box.newUrl});
+      box.newName = "";
+      box.newUrl = "";
+    };
+
+    $scope.addLinkBox = function () {
+      $scope.pageConfig.Groups.unshift({Name: undefined, Links: []});
+    };
+
+    $scope.removeFromBox = function (box, index) {
+      box.Links.splice(index, 1);
+    };
+
+    $scope.removeLinkBox = function (index) {
+      $scope.pageConfig.Groups.splice(index, 1);
     };
 
   } ]);

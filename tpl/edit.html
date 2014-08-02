@@ -1,5 +1,6 @@
 <div class="container-fluid">
   <h1>Dotcom Editor</h1>
+  <span class="h4 pull-right"><a href="#">Return to Dotcom</a></span>
     <form class="form-horizontal" name="inputConfig" ng-submit="submit()">
 
       <div class="form-group">
@@ -13,6 +14,13 @@
         <label class="col-sm-2 control-label" for="customSubtitle">Subtitle</label>
         <div class="col-sm-6">
           <input ng-model="pageConfig.Subtitle" type="text" class="form-control" id="customSubtitle" placeholder="Subtitle"/>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="col-sm-2 control-label">Theme</label>
+        <div class="col-sm-6">
+          <select class="form-control input-sm" ng-model="themerSvc.selectedTheme" ng-options="theme.Name for theme in themerSvc.themes"></select>
         </div>
       </div>
 
@@ -46,34 +54,40 @@
       </div>
 
       <div>
-        <h4>Link Boxes</h4>
-        <div ng-repeat="box in pageConfig.Groups">
+        <h4>Link Boxes</h4><i class="fa fa-plus-square fa-lg" ng-click="addLinkBox()"></i>
+        <div ng-repeat="box in pageConfig.Groups" ng-mouseenter="showDeleteBox=true" ng-mouseleave="showDeleteBox=false">
 
           <div class="form-group">
             <label class="col-sm-2 control-label">Box Name</label>
             <div class="col-sm-6">
-              <input ng-model="box.Name" type="text" class="form-control" />
+              <input ng-model="box.Name" type="text" class="form-control" placeholder="Link Box Name"/>
+            </div>
+            <div class="col-sm=1">
+              <i class="fa fa-trash-o fa-lg" ng-click="removeLinkBox($index)" ng-show="showDeleteBox"></i>
             </div>
           </div>
 
-          <div ng-enter="addLink(bar, name, url)">
+          <div ng-enter="addLink(box)">
             <div class="form-group">
               <div class="col-sm-2 col-sm-offset-2">
-                <input ng-model="name" type="text" class="form-control" />
+                <input ng-model="box.newName" type="text" class="form-control" placeholder="Site Name"/>
               </div>
               <div class="col-sm-6">
-                <input ng-model="url" type="text" class="form-control" />
+                <input ng-model="box.newUrl" type="text" class="form-control" placeholder="Site Url"/>
               </div>
             </div>
           </div>
 
           <div ng-repeat="link in box.Links">
-            <div class="form-group">
+            <div class="form-group" ng-mouseenter="showDelete=true" ng-mouseleave=showDelete=false>
               <div class="col-sm-2 col-sm-offset-2">
                 <input ng-model="link.Name" type="text" class="form-control" />
               </div>
               <div class="col-sm-6">
                 <input ng-model="link.Link" type="text" class="form-control" />
+              </div>
+              <div class="col-sm-1">
+                <i class="fa fa-trash-o fa-lg" ng-click="removeFromBox(box, $index)" ng-show="showDelete"></i>
               </div>
             </div>
           </div>

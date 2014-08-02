@@ -36,13 +36,11 @@
 
     svc.addTheme = function (theme) {
       svc.themes.push(theme);
-      if (svc.themes.length === 1) {
-        svc.selectTheme(theme);
-      }
     };
 
     svc.selectTheme = function (theme) {
       $timeout( function () {
+        $log.debug("Selecting theme");
         svc.selectedTheme = theme;
       });
     };
@@ -66,6 +64,7 @@
 
     svc.resetTheme = function () {
       $timeout(function () {
+        $log.debug("Reseting theme");
         svc.selectedTheme = {
           name: "",
           href: ""
