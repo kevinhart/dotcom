@@ -55,7 +55,7 @@
       var i = 0;
 
       for (i = 0; i < svc.themes.length; i += 1) {
-        if (svc.themes[i].Name == name) {
+        if (svc.themes[i].Name === name) {
           svc.selectTheme(svc.themes[i]);
           return;
         }

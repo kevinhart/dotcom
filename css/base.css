@@ -1,0 +1,24 @@
+/* Minimal styling for the editor page. */
+.editor {
+  margin-bottom: 20px;
+}
+
+.edit-title .h1 {
+  display: inline-block;
+}
+
+.edit-title .h4 {
+  margin-top: 40px;
+}
+
+.edit-action-link {
+  padding-top: 7px;
+}
+
+.edit-action-delete a {
+  color: #ff3b30;
+}
+
+.edit-action-new a {
+  color: #008048;
+}

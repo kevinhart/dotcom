@@ -215,15 +215,26 @@
 
   app.controller("EditCtrl", [ "$scope", "pageConfig", "themerSvc", "$location", function ($scope, pageConfigSvc, themerSvc, $location) {
     $scope.pageConfig = {};
+    $scope.themerSvc = themerSvc;
 
     pageConfigSvc.get().then(function (data) {
       $scope.pageConfig = data;
+      if($scope.pageConfig.Theme) {
+        $scope.themerSvc.selectThemeByName($scope.pageConfig.Theme);
+      }
     });
 
-    $scope.themerSvc = themerSvc;
-
     $scope.submit = function () {
+      var i, j = 0;
+
       $scope.pageConfig.Theme = $scope.themerSvc.selectedTheme.Name;
+
+      for (i = 0; i < $scope.pageConfig.Groups.length; i += 1) {
+        for (j = 0; j < $scope.pageConfig.Groups[i].Links.length; j += 1) {
+          $scope.pageConfig.Groups[i].Links[j].selected = false;
+        }
+      }
+
       pageConfigSvc.set($scope.pageConfig);
       $location.path("/");
     };
@@ -248,6 +259,15 @@
 
     $scope.removeLinkBox = function (index) {
       $scope.pageConfig.Groups.splice(index, 1);
+    };
+
+    $scope.selectLink = function (link) {
+      if($scope.selectedLink) {
+        $scope.selectedLink.selected = false;
+      }
+
+      link.selected = true;
+      $scope.selectedLink = link;
     };
 
   } ]);
